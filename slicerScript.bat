@@ -1,0 +1,1 @@
+.\slic3rFolder\Slic3r-console.exe --output .\gcodeOut\blob.gcode .\stl\blob.stl --load .\slic3rFolder\config.ini

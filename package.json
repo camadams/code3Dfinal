@@ -1,0 +1,24 @@
+{
+  "name": "code3dfinal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "brace": "^0.11.1",
+    "browserify": "^16.5.2",
+    "child_process": "^1.0.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "three": "^0.120.1",
+    "url": "^0.11.0"
+  }
+}
