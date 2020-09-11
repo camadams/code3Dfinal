@@ -9,7 +9,7 @@ require('dotenv').config();
 
 
 const app = express();
-
+const port = process.env.PORT;
 app.use(express.static('.'));
 app.use(efu());
 app.use(express.json());
@@ -18,8 +18,8 @@ app.get('/', function (req, res) {
     res.render(__dirname + '/index.html');
 });
 
-app.listen(8000, () => {
-    console.log('Example app listening on port 8000!');
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`);
 });
 
 
