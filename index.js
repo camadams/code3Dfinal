@@ -65,7 +65,8 @@ app.post('/api', urlencodedParser, async function (req, res) {
             });
 
             // Sending the gcode to the client
-            child.on('exit', async function (code) {
+            child.on('exit', async function (code, signal) {
+                console.log('child process exited with ' +  `code ${code} and signal ${signal}`);
                 var gcodePath = 'gcodeOut/' + fileName.substring(0, fileName.length - 4) + '.gcode';
 
                 // var tempG = "G1 X-11.237 Y-1.445 E2.25396\nG1 X-12.023 Y-3.600 E2.33543\nG1 X-12.027 Y-5.893 E2.41689\nG1 X-11.248 Y-8.051 E2.49835\nG1 X-9.781 Y-9.813 E2.57981\nG1 X-7.801 Y-10.970 E2.66127\nG1 X-5.500 Y-11.382 E2.74430"
