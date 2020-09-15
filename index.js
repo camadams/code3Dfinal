@@ -43,9 +43,9 @@ app.post('/api', urlencodedParser, async function (req, res) {
      });
 
    //  Writing a batch script to slice the stl file
-            var cmd = `.\\slic3rFolder\\Slic3r-console.exe --output .\\gcodeOut\\${
+            var cmd = `./slic3rFolder/Slic3r-console.exe --output ./gcodeOut/${
                 fileName.substring(0, fileName.length - 4)
-            }.gcode .\\stl\\${fileName} --load .\\slic3rFolder\\config.ini`;
+            }.gcode ./stl/${fileName} --load ./slic3rFolder/config.ini`;
 
             await fs.writeFile('slicerScript.bat', cmd, (err) => {
                 if (err) {
@@ -92,9 +92,9 @@ app.post('/api', urlencodedParser, async function (req, res) {
 //             });
 
 //             // Writing a batch script to slice the stl file
-//             var cmd = `.\\slic3rFolder\\Slic3r-console.exe --output .\\gcodeOut\\${
+//             var cmd = `./slic3rFolder/Slic3r-console.exe --output ./gcodeOut/${
 //                 fileName.substring(0, fileName.length - 4)
-//             }.gcode .\\stl\\${fileName} --load .\\slic3rFolder\\config.ini`;
+//             }.gcode ./stl/${fileName} --load ./slic3rFolder/config.ini`;
 
 //             await fs.writeFile('slicerScript.bat', cmd, (err) => {
 //                 if (err) {
