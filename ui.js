@@ -31,7 +31,8 @@ restartButton.addEventListener('click', () => {
     }
 
     drawRange = 2;
+    slider.value=drawRange;
 });
 
 // Console
-const consoleOutput = document.getElementById("consoleOutput")
+// const consoleOutput = document.getElementById("consoleOutput")

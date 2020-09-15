@@ -1,6 +1,29 @@
+var scene = new THREE.Scene();
+
+// Camera
+// var wid = window.innerWidth;
+// var hei = window.innerHeight;
+var wid = 800;
+var hei = 600;
+var camera = new THREE.PerspectiveCamera(75, wid / hei, 0.1, 10000);
+camera.position.set(0, 500, 1000);
+
+
+// Renderer
+var renderer = new THREE.WebGLRenderer();
+renderer.setSize(wid, hei);
+document.body.appendChild(renderer.domElement);
+
+// Controls
+var myControls = new THREE.OrbitControls(camera, renderer.domElement);
+
 function startDrawing(gcode) { // Getting the movement lines from the Gcode
-    
-    consoleOutput.innerHTML = "Received Gcode and ready to simulate."
+
+    scene.remove.apply(scene, scene.children);
+
+    scene.add(new THREE.GridHelper(5000, 10));
+
+    // consoleOutput.innerHTML = "Received Gcode and ready to simulate."
     var parts = "";
     var parts = gcode.split('\n');
 
@@ -25,6 +48,11 @@ function startDrawing(gcode) { // Getting the movement lines from the Gcode
         }
     }
 
+    // Setting sliders max value to the number of points of the 3d print
+    slider.max = points.length;
+    
+    console.log(points);
+
 
     function isCommandMovement(line) {
         var result = true;
@@ -37,25 +65,6 @@ function startDrawing(gcode) { // Getting the movement lines from the Gcode
         }
         return result;
     }
-
-    //Scene
-    var scene = new THREE.Scene();
-    scene.add(new THREE.GridHelper(5000, 10));
-
-    //Camera
-    // var wid = window.innerWidth;
-    // var hei = window.innerHeight;
-    var wid = 800;
-    var hei = 600;
-    var camera = new THREE.PerspectiveCamera(75, wid/hei, 0.1, 10000);
-
-    //Renderer
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(wid, hei);
-    document.body.appendChild(renderer.domElement);
-
-    //Controls
-    var myControls = new THREE.OrbitControls(camera, renderer.domElement);
 
 
     // Cube for printer tip
@@ -72,10 +81,6 @@ function startDrawing(gcode) { // Getting the movement lines from the Gcode
 
     scene.add(line);
 
-    camera.position.set(0, 500, 1000);
-
-    // Setting sliders max value to the number of points of the 3d print
-    slider.max = points.length;
 
     // animation function
     var animate = function () {
@@ -83,7 +88,7 @@ function startDrawing(gcode) { // Getting the movement lines from the Gcode
         // Play button
         if (play) {
             if (drawRange != points.length) {
-                drawRange++;
+                drawRange ++;
                 slider.value = drawRange - 1;
             }
         }
@@ -91,11 +96,33 @@ function startDrawing(gcode) { // Getting the movement lines from the Gcode
         // move printer tip
         tip.position.set(points[drawRange - 1].x, points[drawRange - 1].y + 15, points[drawRange - 1].z);
 
-        //Setting drawing range of the print
+        // Setting drawing range of the print
         line.geometry.setDrawRange(0, drawRange);
 
         renderer.render(scene, camera);
     };
 
     animate();
+}
+
+function init() { // Scene
+    var scene = new THREE.Scene();
+    scene.add(new THREE.GridHelper(5000, 10));
+
+    // Camera
+    // var wid = window.innerWidth;
+    // var hei = window.innerHeight;
+    var wid = 800;
+    var hei = 600;
+    var camera = new THREE.PerspectiveCamera(75, wid / hei, 0.1, 10000);
+    camera.position.set(0, 150, 400);
+
+
+    // Renderer
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(wid, hei);
+    document.body.appendChild(renderer.domElement);
+
+    // Controls
+    var myControls = new THREE.OrbitControls(camera, renderer.domElement);
 }
