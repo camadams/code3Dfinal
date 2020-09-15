@@ -18,7 +18,7 @@ document.body.appendChild(renderer.domElement);
 var myControls = new THREE.OrbitControls(camera, renderer.domElement);
 
 function startDrawing(gcode) { // Getting the movement lines from the Gcode
-
+    console.log(gcode)
     scene.remove.apply(scene, scene.children);
 
     scene.add(new THREE.GridHelper(5000, 10));

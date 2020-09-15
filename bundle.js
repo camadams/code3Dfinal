@@ -7634,8 +7634,8 @@ OpenJsCad.Processor.prototype = {
   
   updateDownloadLink: function() {
     var ext = this.selectedFormatInfo().extension;
-    this.generateOutputFileButton.innerHTML = "Generate "+ext.toUpperCase();
-    this.simulateButton.innerHTML = 'Simulate 3D printing'
+    this.generateOutputFileButton.innerHTML = "Export";
+    this.simulateButton.innerHTML = 'Print'
 
   },
   
