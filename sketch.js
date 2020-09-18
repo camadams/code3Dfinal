@@ -17,9 +17,22 @@ document.body.appendChild(renderer.domElement);
 // Controls
 var myControls = new THREE.OrbitControls(camera, renderer.domElement);
 
+function isCommandMovement(line) {
+    var result = true;
+    var parts = line.split(" ");
+    if (parts[0] != "G1") {
+        result = false;
+
+    } else if (parts.length < 3 || (parts.length == 3 && parts[1].substring(0, 1) != 'Z')) {
+        result = false;
+    }
+    return result;
+}
+
 function startDrawing(gcode) { // Getting the movement lines from the Gcode
-    console.log(gcode)
     scene.remove.apply(scene, scene.children);
+    restartPrint();
+    myControls.reset();
 
     scene.add(new THREE.GridHelper(5000, 10));
 
@@ -31,39 +44,16 @@ function startDrawing(gcode) { // Getting the movement lines from the Gcode
 
     // looping through gcode movements and creating array of Vector 3 points
     var points = [];
-
     var z = 0; // initial printing head height
-
     for (var i = 0; i < movements.length; i++) {
-
         var parts = movements[i].split(" ");
-
         if (parts[1].substring(0, 1) == 'Z') {
             z = parseFloat(parts[1].substring(1));
-
         } else {
             var point = new THREE.Vector3(parseFloat(parts[1].substring(1)) * 20, z * 20, parseFloat(parts[2].substring(1)) * 20);
+            console.log(point)
             points.push(point);
-
         }
-    }
-
-    // Setting sliders max value to the number of points of the 3d print
-    slider.max = points.length;
-    
-    console.log(points);
-
-
-    function isCommandMovement(line) {
-        var result = true;
-        var parts = line.split(" ");
-        if (parts[0] != "G1") {
-            result = false;
-
-        } else if (parts.length < 3 || (parts.length == 3 && parts[1].substring(0, 1) != 'Z')) {
-            result = false;
-        }
-        return result;
     }
 
 
@@ -78,9 +68,13 @@ function startDrawing(gcode) { // Getting the movement lines from the Gcode
     var lineGeo = new THREE.BufferGeometry().setFromPoints(points);
     var lineMat = new THREE.LineBasicMaterial({color: 0xffff00});
     var line = new THREE.Line(lineGeo, lineMat);
+    console.log(line)
+    console.log(lineGeo)
 
     scene.add(line);
 
+    // Setting sliders max value to the number of points of the 3d print
+    slider.max = points.length;
 
     // animation function
     var animate = function () {
@@ -90,11 +84,16 @@ function startDrawing(gcode) { // Getting the movement lines from the Gcode
             if (drawRange != points.length) {
                 drawRange ++;
                 slider.value = drawRange - 1;
+            } else {
+                // togglePlay();
             }
         }
 
         // move printer tip
-        tip.position.set(points[drawRange - 1].x, points[drawRange - 1].y + 15, points[drawRange - 1].z);
+        if (typeof(points[drawRange - 1]) !== 'undefined') {
+            tip.position.set(points[drawRange - 1].x, points[drawRange - 1].y + 15, points[drawRange - 1].z);
+
+        }
 
         // Setting drawing range of the print
         line.geometry.setDrawRange(0, drawRange);

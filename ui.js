@@ -25,14 +25,16 @@ playButton.addEventListener('click', () => togglePlay());
 // Restart Button
 var restartButton = document.getElementById("restart");
 
-restartButton.addEventListener('click', () => {
+function restartPrint() {
     if (play) {
         togglePlay();
     }
 
     drawRange = 2;
     slider.value=drawRange;
-});
+}
+
+restartButton.addEventListener('click', () => restartPrint());
 
 // Console
 // const consoleOutput = document.getElementById("consoleOutput")
