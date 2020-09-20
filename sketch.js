@@ -13,6 +13,7 @@ camera.position.set(0, 500, 1000);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(wid, hei);
 document.body.appendChild(renderer.domElement);
+document.getElementById("printViewer").appendChild(renderer.domElement);
 
 // Controls
 var myControls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -119,8 +120,10 @@ function init() { // Scene
 
     // Renderer
     var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(wid, hei);
-    document.body.appendChild(renderer.domElement);
+    renderer.setSize(80, hei);
+    renderer.style.position = 'relative';
+    document.getElementById("printViewer").appendChild(renderer.domElement);
+    //document.body.appendChild(renderer.domElement);
 
     // Controls
     var myControls = new THREE.OrbitControls(camera, renderer.domElement);

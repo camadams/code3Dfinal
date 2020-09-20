@@ -17,7 +17,7 @@ window.addEventListener('load', function () {
     editor.setValue([
         '// Javascript'
         , 'function main() {'
-        , ' var cube = CSG.cylinder();  '
+        , ' var cube = CSG.cube();  '
         , ' return cube;'
         , '}'
         ].join('\n')
@@ -7318,8 +7318,8 @@ OpenJsCad.Processor = function(containerdiv, options, onchange) {
   this.options.verbose = !!this.cleanOption(options.verbose, true);
 
   // default applies unless sizes specified in options
-  this.widthDefault = "800px";
-  this.heightDefault = "600px";
+  this.widthDefault = "100%";
+  this.heightDefault = "500px";
 
   this.viewerdiv = null;
   this.viewer = null;
@@ -7457,7 +7457,7 @@ OpenJsCad.Processor.prototype = {
     this.simulateButton.onclick = function (e) {
 
       var stlBlob = that.currentObjectToBlob();
-
+      jQuery('#profile-tab').tab('show');
     //   const reader = new FileReader();
     //   reader.addEventListener('loadend', () => {
     //       console.log(reader.result);
@@ -7478,6 +7478,7 @@ OpenJsCad.Processor.prototype = {
         ).then(success => startDrawing(success.msg)// Handle the success response object
         ).catch(error => console.log(error) // Handle the error response object
         );
+
 
     //   // fetch('http://127.0.0.1:5000/').then(success => console.log(success) // Handle the success response object
     //   // ).catch(error => console.log(error) // Handle the error response object
