@@ -36,6 +36,6 @@ canvas { cursor: move; }
 }
 
 .statusdiv {
-  width: 800px;
+  width: 60%;
   margin-bottom: 10px;
 }
