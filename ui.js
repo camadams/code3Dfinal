@@ -36,5 +36,18 @@ function restartPrint() {
 
 restartButton.addEventListener('click', () => restartPrint());
 
+// controls.addEventListener('change', render);
+
+
+var resetViewButton = document.getElementById("resetView");
+
+function resetView() {
+    myControls.reset();
+
+}
+
+resetViewButton.addEventListener('click', () => resetView());
+
+
 // Console
 // const consoleOutput = document.getElementById("consoleOutput")
