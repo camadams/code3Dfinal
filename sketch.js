@@ -1,8 +1,13 @@
+/**
+ * A front end javascript program that inputs Gcode and outputs a visualization of the 
+ * 3D printing of the Gcode
+ * Cameron Adams
+ */
+
+ // Initialisation
 var scene = new THREE.Scene();
 
-// Camera
-// var wid = window.innerWidth;
-// var hei = window.innerHeight;
+
 var wid = 800;
 var hei = 600;
 var camera = new THREE.PerspectiveCamera(75, wid / hei, 0.1, 10000);
@@ -30,6 +35,8 @@ function isCommandMovement(line) {
     return result;
 }
 
+
+// The animation
 function startDrawing(gcode) { // Getting the movement lines from the Gcode
     scene.remove.apply(scene, scene.children);
     restartPrint();
@@ -73,13 +80,6 @@ function startDrawing(gcode) { // Getting the movement lines from the Gcode
             }
         }
     }
-    // points = points.filter((point) => typeof(point) !=='undefined');
-    // for (var i=0;i<points.length;i++) {
-    //     // if (points[i] ==='undefined') {
-    //     //     console.log("hello")
-    //     // }
-    //     console.log(points[i])
-    // }
 
     // Cube for printer tip
     var tipGeo = new THREE.BoxGeometry(5, 30, 5);
