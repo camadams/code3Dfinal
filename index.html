@@ -1,3 +1,22 @@
+<!--
+  Main page of web-app
+  Cameron Adams and Maria Nanabhai
+
+  ## LICENSE
+ * This file is part of Code3D.
+
+ Code3D is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ Code3D is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+-->
+
+
 <!DOCTYPE html>
 
 <html>
@@ -5,8 +24,6 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- <script src="lib/three.min.js"></script>
-  <script src="lib/orbitcontrols.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r118/three.js"></script>
   <script src="OrbitControls.js"></script>
 
@@ -28,7 +45,6 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r118/three.js"></script> -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
@@ -72,6 +88,7 @@
 </head>
 
 <body>
+<!-- tabs for model and print -->
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#model3d" role="tab" aria-controls="home"
@@ -83,7 +100,7 @@
   </li>
 </ul>
 
-
+<!-- Model tab -->
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="model3d" role="tabpanel" aria-labelledby="home-tab">
     <div class="container">
@@ -113,6 +130,7 @@
   </div>
   </div>
 
+  <!-- Print tab -->
   <div class="tab-pane fade" id="print3d" role="tabpanel" aria-labelledby="profile-tab">
     <div class="container">
   <h1>Print3d</h1>

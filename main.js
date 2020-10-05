@@ -1,3 +1,21 @@
+/**
+ * Front end program to create text editor, set up model viewer, and draw up correspondence between them
+ * @author Maria Nanabhai
+ *
+ * ## LICENSE
+ * This file is part of Code3D.
+
+ Code3D is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ Code3D is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ */
+
 var ace = require('brace');
 require('brace/mode/javascript');
 require('brace/theme/monokai');
@@ -10,9 +28,12 @@ var F;
 module.exports.viewer = this.viewer;
 
 window.addEventListener('load', function () {
+    // create Ace editor on load
     editor = ace.edit('editor');
     editor.getSession().setMode('ace/mode/javascript');
     editor.setTheme('ace/theme/monokai');
+
+    // initial sample code in editor
     editor.setValue([
         '// Javascript'
         , 'function main() {'
@@ -25,15 +46,9 @@ window.addEventListener('load', function () {
 
     onload();
 
+    // set submit button to update viewer
     document.getElementById("submitCode").addEventListener("click", function (){
-        console.log("button clicked")
         updateSolid();
-        /*F=function(){
-
-            eval(editor.getValue());
-        };
-        F();
-         */
     })
 
 })
@@ -43,68 +58,17 @@ var gProcessor=null;
 OpenJsCad.AlertUserOfUncaughtExceptions();
 
 function onload(){
+    // set up viewer
     gProcessor = new OpenJsCad.Processor(document.getElementById("viewer"));
     viewer = gProcessor.viewer;
-    console.log("loaded");
     updateSolid();
 }
 
 function updateSolid(code=""){
+    // send code from text editor for processing when submitted
     if (code === ""){
         code = editor.getValue();
     }
     console.log("updating solid, code is: " + code)
     gProcessor.setJsCad(code);
-}
-function test(){
-    const m3d = new Code3d();
-    console.log("fuckery code is: " + m3d.code);
-    m3d.createObject('obj','title');
-}
-class Code3d {
-    constructor() {
-        this.objects = [];
-        this.code = "function main(){";
-        this.scene = "var scene;";
-    }
-
-    sphere(){
-        this.code += "scene = CSG.sphere(); \n";
-        console.log("sphere called, code is: " + this.code);
-        var temp = this.code + "return scene;}"
-        setTimeout(() => {
-            console.log("after timeout, code is: " + temp);
-            updateSolid(temp);
-        },3000)
-    }
-
-    cube(){
-        this.code += "scene = scene.union(CSG.cube()); \n";
-        console.log("cube called, code is: " + this.code);
-        var temp = this.code + "return scene;}"
-
-        setTimeout(() => {
-            console.log("after timeout, code is: " + temp);
-            updateSolid(temp);
-        },5000)
-    }
-
-    obj(){
-        return "scene = CSG.sphere();"
-    }
-
-    createObject(type, name){
-        eval('this.objects[\'' + name + '\'] = ' + 'this.' + type + '();');
-        this.code += this.objects[name];
-        this.complete();
-    }
-
-    complete(){
-        var temp = this.code + "return scene;}"
-
-        setTimeout(() => {
-            console.log("after timeout, code is: " + temp);
-            updateSolid(temp);
-        },5000)
-    }
 }
