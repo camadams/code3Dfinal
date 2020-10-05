@@ -1,7 +1,7 @@
 /**
  * A front end javascript program that inputs Gcode and outputs a visualization of the 
  * 3D printing of the Gcode
- * Cameron Adams
+ * @author Cameron Adams
  *
  * ## LICENSE
  * This file is part of Code3D.

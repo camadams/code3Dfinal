@@ -1,6 +1,6 @@
 /**
  * The backend server
- * Cameron Adams and Maria Nanabhai
+ * @author Cameron Adams and Maria Nanabhai
  *
  *
  * ## LICENSE

@@ -1,6 +1,6 @@
 /**
  * The ui for the controls of the 3d print animation
- * Cameron Adams
+ * @author Cameron Adams
  *
  * ## LICENSE
  * This file is part of Code3D.
