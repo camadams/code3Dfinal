@@ -1,3 +1,21 @@
+/**
+ * Compiled code from modules due to import issues
+ *
+ * ## LICENSE
+ * This file is part of Code3D.
+
+ Code3D is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ Code3D is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ */
+
+
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 var ace = require('brace');
 require('brace/mode/javascript');
@@ -29,12 +47,6 @@ window.addEventListener('load', function () {
     document.getElementById("submitCode").addEventListener("click", function (){
         console.log("button clicked")
         updateSolid();
-        /*F=function(){
-
-            eval(editor.getValue());
-        };
-        F();
-         */
     })
 
 })
@@ -57,58 +69,7 @@ function updateSolid(code=""){
     console.log("updating solid, code is: " + code)
     gProcessor.setJsCad(code);
 }
-function test(){
-    const m3d = new Code3d();
-    console.log("fuckery code is: " + m3d.code);
-    m3d.createObject('obj','title');
-}
-class Code3d {
-    constructor() {
-        this.objects = [];
-        this.code = "function main(){";
-        this.scene = "var scene;";
-    }
 
-    sphere(){
-        this.code += "scene = CSG.sphere(); \n";
-        console.log("sphere called, code is: " + this.code);
-        var temp = this.code + "return scene;}"
-        setTimeout(() => {
-            console.log("after timeout, code is: " + temp);
-            updateSolid(temp);
-        },3000)
-    }
-
-    cube(){
-        this.code += "scene = scene.union(CSG.cube()); \n";
-        console.log("cube called, code is: " + this.code);
-        var temp = this.code + "return scene;}"
-
-        setTimeout(() => {
-            console.log("after timeout, code is: " + temp);
-            updateSolid(temp);
-        },5000)
-    }
-
-    obj(){
-        return "scene = CSG.sphere();"
-    }
-
-    createObject(type, name){
-        eval('this.objects[\'' + name + '\'] = ' + 'this.' + type + '();');
-        this.code += this.objects[name];
-        this.complete();
-    }
-
-    complete(){
-        var temp = this.code + "return scene;}"
-
-        setTimeout(() => {
-            console.log("after timeout, code is: " + temp);
-            updateSolid(temp);
-        },5000)
-    }
-}
 },{"./src/csg":2,"./src/openjscad":3,"brace":4,"brace/keybinding/vim":5,"brace/mode/javascript":6,"brace/theme/monokai":7}],2:[function(require,module,exports){
 /*
 
