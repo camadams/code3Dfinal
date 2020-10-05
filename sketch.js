@@ -23,6 +23,7 @@ document.getElementById("printViewer").appendChild(renderer.domElement);
 // Controls
 var myControls = new THREE.OrbitControls(camera, renderer.domElement);
 
+// Inputs a Gcode command and returns true if its a movement command, otherwise false
 function isCommandMovement(line) {
     var result = true;
     var parts = line.split(" ");
